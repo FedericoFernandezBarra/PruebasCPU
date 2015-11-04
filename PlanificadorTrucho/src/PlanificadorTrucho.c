@@ -35,17 +35,19 @@ int main(void) {
 	printf("PCB ENVIADO: ");
 	imprimirPCB(&PCB);
 
-	char estado = 'B';
+	char* estado;
 	recibirMensajeCompleto(socketCPU, &estado, sizeof(char));
-	if(estado == 'B')
+
+	char estadoRecibido = estado;
+	if(estadoRecibido == 'B')
 	{
 		int* tiempoDeEspera;
 		recibirMensajeCompleto(socketCPU, &tiempoDeEspera, sizeof(int));
-		printf("MENSAJE DE CPU RECIBIDO: %c TIEMPO  DE ESPERA: % i\n", estado, tiempoDeEspera);
+		printf("MENSAJE DE CPU RECIBIDO: %c TIEMPO  DE ESPERA: % i\n", estadoRecibido, tiempoDeEspera);
 	}
 	else
 	{
-		printf("MENSAJE DE CPU RECIBIDO: %c\n", estado);
+		printf("MENSAJE DE CPU RECIBIDO: %c\n", estadoRecibido);
 	}
 
 	tipoPCB* PCBRecibido = recibirPCB(socketCPU);
