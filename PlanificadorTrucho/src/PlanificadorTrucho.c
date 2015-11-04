@@ -19,21 +19,25 @@ int main(void) {
 	asociarAPuerto(socketEscuchaCPU, PUERTOCPU);
 	escucharConexiones(socketEscuchaCPU, 1);
 	int socketCPU = crearSocketParaAceptarSolicitudes(socketEscuchaCPU);
-
-	int* idCPU;
-	recibirMensajeCompleto(socketCPU, &idCPU, sizeof(int));
-	printf("CPU RECIBIDA ID: %i\n", idCPU);
-
-	int quantum = 3;
-	enviarMensaje(socketCPU, &quantum, sizeof(quantum));
-
-
 	tipoPCB* PCB;
 	PCB->estado = 'o';
 	PCB->ruta = "programa.cod";
-	PCB->insPointer = 1;
+	PCB->insPointer = 0;
 	PCB->pid = 1;
-	enviarPCB(socketCPU, PCB);
+    while(true){
+
+		int* idCPU;
+		recibirMensajeCompleto(socketCPU, &idCPU, sizeof(int));
+		printf("CPU RECIBIDA ID: %i\n", idCPU);
+
+		int quantum = 3;
+		enviarMensaje(socketCPU, &quantum, sizeof(quantum));
+		enviarPCB(socketCPU, PCB);
+
+//		int* estado;
+//		recibirMensajeCompleto(socketCPU, &estado, sizeof(int));
+//		tipoPCB* PCBRecibido = recibirPCB(socketCPU);
+	    }
 
 	return EXIT_SUCCESS;
 }
