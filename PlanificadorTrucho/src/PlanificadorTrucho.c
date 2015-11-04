@@ -24,21 +24,28 @@ int main(void) {
 	PCB->ruta = "programa.cod";
 	PCB->insPointer = 1;
 	PCB->pid = 1;
-    while(true){
 
-		int* idCPU;
-		recibirMensajeCompleto(socketCPU, &idCPU, sizeof(int));
-		printf("CPU RECIBIDA ID: %i\n", idCPU);
+	int* idCPU;
+	recibirMensajeCompleto(socketCPU, &idCPU, sizeof(int));
+	printf("CPU RECIBIDA ID: %i\n", idCPU);
 
-		int quantum = 0;
-		enviarMensaje(socketCPU, &quantum, sizeof(quantum));
-		enviarPCB(socketCPU, PCB);
+	int quantum = 0;
+	enviarMensaje(socketCPU, &quantum, sizeof(quantum));
+	enviarPCB(socketCPU, PCB);
+	printf("PCB ENVIADO: ");
+	imprimirPCB(PCB);
 
-//		int* estado;
-//		recibirMensajeCompleto(socketCPU, &estado, sizeof(int));
-//		tipoPCB* PCBRecibido = recibirPCB(socketCPU);
-//
-	    }
+	int* estado;
+	recibirMensajeCompleto(socketCPU, &estado, sizeof(int));
+	tipoPCB* PCBRecibido = recibirPCB(socketCPU);
+
+	printf("MENSAJE DE CPU RECIBIDO: %c\n", estado);
+	printf("PCB DE CPU RECIBIDO: ");
+	imprimirPCB(PCBRecibido);
+
+	liberarSocket(socketCPU);
+	liberarSocket(socketEscuchaCPU);
+
 
 	return EXIT_SUCCESS;
 }

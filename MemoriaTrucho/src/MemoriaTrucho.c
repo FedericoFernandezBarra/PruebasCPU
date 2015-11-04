@@ -21,12 +21,15 @@ int main(void) {
 	int socketCPU = crearSocketParaAceptarSolicitudes(socketEscuchaCPU);
 
 	tipoInstruccion* instruccion = recibirInstruccion(socketCPU);
-	printf("INSTRUCCION RECIBIDA: pID: %i | instruccion: %c | numeroDePagina: %i | texto: %s\n", instruccion->pid, instruccion->instruccion, instruccion->nroPagina, instruccion->texto);
+	printf("INSTRUCCION RECIBIDA | pID: %i | instruccion: %c | numeroDePagina: %i | texto: %s\n", instruccion->pid, instruccion->instruccion, instruccion->nroPagina, instruccion->texto);
 
 	tipoRespuesta respuesta;
 	respuesta.respuesta = 'D';
 	respuesta.informacion = "contenido de la pagina";
 	enviarRespuesta(socketCPU, &respuesta);
+	printf("RESPUESTA ENVIADA | respuesta: %c | informacion: %s\n", respuesta.respuesta, respuesta.informacion);
 
+	liberarSocket(socketCPU);
+	liberarSocket(socketEscuchaCPU);
 	return EXIT_SUCCESS;
 }
