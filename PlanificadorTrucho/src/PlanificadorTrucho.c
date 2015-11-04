@@ -22,7 +22,7 @@ int main(void) {
 	tipoPCB* PCB;
 	PCB->estado = 'o';
 	PCB->ruta = "programa.cod";
-	PCB->insPointer = 0;
+	PCB->insPointer = 1;
 	PCB->pid = 1;
     while(true){
 

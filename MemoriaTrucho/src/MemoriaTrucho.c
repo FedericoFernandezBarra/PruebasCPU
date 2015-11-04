@@ -23,10 +23,10 @@ int main(void) {
 	tipoInstruccion* instruccion = recibirInstruccion(socketCPU);
 	printf("INSTRUCCION RECIBIDA: pID: %i | instruccion: %c | numeroDePagina: %i | texto: %s\n", instruccion->pid, instruccion->instruccion, instruccion->nroPagina, instruccion->texto);
 
-//	tipoRespuesta* respuesta;
-//	respuesta->respuesta = 'O';
-//	respuesta->informacion = "contenido de la pagina";
-//	enviarRespuesta(socketCPU, respuesta);
+	tipoRespuesta respuesta;
+	respuesta.respuesta = 'O';
+	respuesta.informacion = "contenido de la pagina";
+	enviarRespuesta(socketCPU, &respuesta);
 
 	return EXIT_SUCCESS;
 }
