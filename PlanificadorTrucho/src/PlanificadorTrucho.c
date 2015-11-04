@@ -30,13 +30,14 @@ int main(void) {
 		recibirMensajeCompleto(socketCPU, &idCPU, sizeof(int));
 		printf("CPU RECIBIDA ID: %i\n", idCPU);
 
-		int quantum = 3;
+		int quantum = 0;
 		enviarMensaje(socketCPU, &quantum, sizeof(quantum));
 		enviarPCB(socketCPU, PCB);
 
 //		int* estado;
 //		recibirMensajeCompleto(socketCPU, &estado, sizeof(int));
 //		tipoPCB* PCBRecibido = recibirPCB(socketCPU);
+//
 	    }
 
 	return EXIT_SUCCESS;

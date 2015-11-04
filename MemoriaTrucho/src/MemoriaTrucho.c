@@ -24,7 +24,7 @@ int main(void) {
 	printf("INSTRUCCION RECIBIDA: pID: %i | instruccion: %c | numeroDePagina: %i | texto: %s\n", instruccion->pid, instruccion->instruccion, instruccion->nroPagina, instruccion->texto);
 
 	tipoRespuesta respuesta;
-	respuesta.respuesta = 'O';
+	respuesta.respuesta = 'D';
 	respuesta.informacion = "contenido de la pagina";
 	enviarRespuesta(socketCPU, &respuesta);
 
