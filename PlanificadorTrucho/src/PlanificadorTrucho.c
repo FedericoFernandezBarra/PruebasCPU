@@ -53,9 +53,12 @@ int main(void) {
 	imprimirPCB(&PCB);
 
 
+
+
 	while(1)
 	{
 		char estado;
+
 		recibirMensajeCompleto(socketCPU[1], &estado, sizeof(char));
 
 		if(estado == 'B')
@@ -73,14 +76,16 @@ int main(void) {
 
 		printf("PCB DE CPU RECIBIDO: ");
 		imprimirPCB(PCBRecibido);
+//		size_t tamanioDeResultadoDeRafaga;
+//		char* resultadoDeRafaga;
+////		recibirMensajeCompleto(socketCPU[1], &tamanioDeResultadoDeRafaga, sizeof(size_t));
+////		resultadoDeRafaga = malloc(tamanioDeResultadoDeRafaga);
+////		recibirMensajeCompleto(socketCPU[1], &resultadoDeRafaga, tamanioDeResultadoDeRafaga);
+////		printf("RAFAGA DE CPU RECIBIDA: %s\n", resultadoDeRafaga);
 		enviarPCB(socketCPU[1], PCBRecibido);
 		printf("PCB ENVIADO: ");
-		imprimirPCB(&PCB);
+		imprimirPCB(PCBRecibido);
 	}
-
-	liberarSocket(socketCPU);
-	liberarSocket(socketEscuchaCPU);
-
 
 	return EXIT_SUCCESS;
 }
